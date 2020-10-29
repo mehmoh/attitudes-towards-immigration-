@@ -1,0 +1,1 @@
+As it is a single person project, there is no code of conduct 
