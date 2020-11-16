@@ -1,0 +1,26 @@
+﻿name,variable ,,remove codes ,points
+Religion,cps19_religion,,22 23,
+PROVINCE,cps19_province,,Nothing,
+income,cps19_income_cat,cps19_income_number,cat: 9 ,"replace _19cps19_income_cat=1 if _19cps19_income_number==0
+replace _19cps19_income_cat=2 if _19cps19_income_number>0&_19cps19_income_number<30001&!missing(_19cps19_income_number)
+replace _19cps19_income_cat=3 if _19cps19_income_number>30000&_19cps19_income_number<60001&!missing(_19cps19_income_number)
+replace _19cps19_income_cat=4 if _19cps19_income_number>60000&_19cps19_income_number<90001&!missing(_19cps19_income_number)
+replace _19cps19_income_cat=5 if _19cps19_income_number>90000&_19cps19_income_number<110001&!missing(_19cps19_income_number)
+replace _19cps19_income_cat=6 if _19cps19_income_number>110000&_19cps19_income_number<150001&!missing(_19cps19_income_number)
+replace _19cps19_income_cat=7 if _19cps19_income_number>150000&_19cps19_income_number<200001&!missing(_19cps19_income_number)
+replace _19cps19_income_cat=8 if _19cps19_income_number>200000&!missing(_19cps19_income_number)"
+Marital status,cps19_marital,,,
+Age,cps19_yob,,,Age=2019-_19cps19_yob-1919
+Employment status,cps19_employment,7,,
+gender,cps19_gender,,,
+education,cps19_education,12,,
+Immattitude,cps19_imm,4,,
+Immstatus,cps19_bornin_canada,3,,
+Economic situation of Canada,cps19_econ_retro,4,,
+Financial situation,cps19_own_fin_retro,4,,
+Vote choice,pes19_votechoice2019,7 8 9 ,,I coded those who did not vote to 10
+Turnout,pes19_turnout2019,8,all 2 3 4 5 6 should be coded as no meaning 2,
+New consumption,cps19_news_cons,7,,
+Nativism,pes19_nativism1,6,minorities should adopot their costums ,
+Nativism,pes19_nativism5,,Immigrants increase the crime rate,
+stealing job,pes19_immigjobs,6,,
