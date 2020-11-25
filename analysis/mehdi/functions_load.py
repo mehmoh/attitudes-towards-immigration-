@@ -46,7 +46,7 @@ def load_and_process(a):
           .assign(pes19_nativism1 = lambda x: x['pes19_nativism1'].map({1: 'Strongly disagree', 2: 'Somewhat disagree', 3: 'Neither agree nor disagree', 4: 'Somewhat agree', 5: 'Strongly agree'}))
           .assign(pes19_nativism5 = lambda x: x['pes19_nativism5'].map({1: 'Strongly disagree', 2: 'Somewhat disagree', 3: 'Neither agree nor disagree', 4: 'Somewhat agree', 5: 'Strongly agree'}))
           .assign(pes19_immigjobs = lambda x: x['pes19_immigjobs'].map({1: 'Strongly disagree', 2: 'Somewhat disagree', 3: 'Neither agree nor disagree', 4: 'Somewhat agree', 5: 'Strongly agree'}))
-          .assign(cps19_province = lambda x: x['cps19_province'].map( {14:'Alberta', 15:'British Columbia', 16:'Manitoba', 17:'New Brunswick', 18:'Newfoundland and Labrador', 19:'Northwest Territories', 20:'Nova Scotia', 21:'Nunavut', 22:'Ontario', 23:'Prince Edward Island', 24:'Quebec', 25:'Saskatchewan', 26:'Yukon'}))
+          .assign(cps19_province = lambda x: x['cps19_province'].map( {14:'Alberta', 15:'British Columbia', 16:'Manitoba', 17:'New Brunswick', 18:'Newfoundland', 19:'Northwest Territories', 20:'Nova Scotia', 21:'Nunavut', 22:'Ontario', 23:'Prince Edward', 24:'Quebec', 25:'Saskatchewan', 26:'Yukon'}))
           .assign(cps19_econ_retro = lambda x: x['cps19_econ_retro'].map({1: 'Got better', 2: 'Stayed about the same', 3: 'Got worse'}))
           .assign(pes19_votechoice2019= lambda x: x['pes19_votechoice2019'].map({1: 'Liberal', 2: 'Conservative', 3: 'NDP', 4: 'Bloc Québécois', 5: 'Green Party', 6:'People Party', 10: 'Not voted'}))
                     )
