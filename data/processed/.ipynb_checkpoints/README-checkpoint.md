@@ -1,1 +1,1 @@
-Raw data is in this folder
+Tabealu is the csv file that I will use in Tabealu software
