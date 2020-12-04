@@ -21,4 +21,5 @@ the data that I am going to use is Canadian election Studies (CES). The CES is a
 
 ## References
 
-{Add your stuff here}
+### Link to the presentation 
+https://youtu.be/Tu9M9oUAatc
