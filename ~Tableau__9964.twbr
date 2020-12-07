@@ -15,7 +15,7 @@
     <WindowsPersistSimpleIdentifiers />
     <ZoneBackgroundTransparency />
   </document-format-change-manifest>
-  <repository-location id='AttitudetowardimmigraitioninCanada-data301course-project-solo_506' path='/t/data301dashboards/workbooks' revision='1.0' site='data301dashboards' />
+  <repository-location id='AttitudetowardimmigraitioninCanada-data301course-project-solo_506' path='/t/data301dashboards/workbooks' revision='1.1' site='data301dashboards' />
   <preferences>
     <preference name='ui.encoding.shelf.height' value='24' />
     <preference name='ui.shelf.height' value='26' />
@@ -443,17 +443,6 @@
               <bucket>&quot;Ontario&quot;</bucket>
             </map>
           </encoding>
-          <encoding attr='color' field='[none:cps19_imm:nk]' type='palette'>
-            <map to='#43719f'>
-              <bucket>&quot;Fewer immigrants&quot;</bucket>
-            </map>
-            <map to='#89b8da'>
-              <bucket>&quot;About the same number of immigrants as now&quot;</bucket>
-            </map>
-            <map to='#b9ddf1'>
-              <bucket>&quot;More immigrants&quot;</bucket>
-            </map>
-          </encoding>
           <encoding attr='color' field='[none:pes19_votechoice2019:nk]' type='palette'>
             <map to='#6eb663'>
               <bucket>&quot;People Party&quot;</bucket>
@@ -483,6 +472,17 @@
             </map>
             <map to='#b3e0a6'>
               <bucket>&quot;Canadian&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:cps19_imm:nk]' type='palette'>
+            <map to='#43719f'>
+              <bucket>&quot;Fewer immigrants&quot;</bucket>
+            </map>
+            <map to='#89b8da'>
+              <bucket>&quot;About the same number of immigrants as now&quot;</bucket>
+            </map>
+            <map to='#b9ddf1'>
+              <bucket>&quot;More immigrants&quot;</bucket>
             </map>
           </encoding>
         </style-rule>
@@ -543,11 +543,14 @@
       </datasource-dependencies>
       <filter class='quantitative' column='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:age:qk]' included-values='in-range'>
         <min>18.0</min>
-        <max>47.600000000000001</max>
+        <max>64.900000000000006</max>
         <target field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:age:qk]' />
       </filter>
       <filter class='categorical' column='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_bornin_canada:nk]'>
-        <groupfilter function='member' level='[none:cps19_bornin_canada:nk]' member='&quot;Canadian&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+        <groupfilter function='union' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+          <groupfilter function='member' level='[none:cps19_bornin_canada:nk]' member='&quot;Canadian&quot;' />
+          <groupfilter function='member' level='[none:cps19_bornin_canada:nk]' member='&quot;Immigrant&quot;' />
+        </groupfilter>
         <target field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_bornin_canada:nk]' />
       </filter>
       <filter class='categorical' column='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_employment:nk]'>
@@ -1394,7 +1397,17 @@
           </slices>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[pcto:cnt:cps19_bornin_canada:qk]' scope='rows' value='Percent' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_bornin_canada:nk]' value='-90' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
         <panes>
           <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
             <view>
@@ -1443,7 +1456,7 @@
             </column-instance>
           </datasource-dependencies>
           <filter class='categorical' column='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[Action (Cps19 Province)]'>
-            <groupfilter function='level-members' level='[cps19_province]' user:ui-action-filter='[Action3]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+            <groupfilter function='member' level='[cps19_province]' member='&quot;Saskatchewan&quot;' user:ui-action-filter='[Action3]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <manual-sort column='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_education:nk]' direction='ASC'>
             <dictionary>
@@ -1470,7 +1483,17 @@
           </slices>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[pcto:cnt:cps19_education:qk]' scope='rows' value='Percent' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_education:nk]' value='-90' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
             <view>
@@ -1519,7 +1542,7 @@
             </column-instance>
           </datasource-dependencies>
           <filter class='categorical' column='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[Action (Cps19 Province)]'>
-            <groupfilter function='level-members' level='[cps19_province]' user:ui-action-filter='[Action3]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+            <groupfilter function='member' level='[cps19_province]' member='&quot;Saskatchewan&quot;' user:ui-action-filter='[Action3]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <manual-sort column='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_religion:nk]' direction='ASC'>
             <dictionary>
@@ -1578,9 +1601,7 @@
     <worksheet name='EDA: Voting'>
       <layout-options>
         <title>
-          <formatted-text>
-            <run>Vote choice</run>
-          </formatted-text>
+          <formatted-text />
         </title>
       </layout-options>
       <table>
@@ -1609,7 +1630,7 @@
             <column caption='Pes19 Votechoice2019' datatype='string' name='[pes19_votechoice2019]' role='dimension' type='nominal' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[Action (Cps19 Province)]'>
-            <groupfilter function='level-members' level='[cps19_province]' user:ui-action-filter='[Action3]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+            <groupfilter function='member' level='[cps19_province]' member='&quot;Saskatchewan&quot;' user:ui-action-filter='[Action3]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <manual-sort column='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:pes19_votechoice2019:nk]' direction='ASC'>
             <dictionary>
@@ -1635,6 +1656,9 @@
         <style>
           <style-rule element='axis'>
             <format attr='title' class='0' field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[pcto:cnt:pes19_votechoice2019:qk:2]' scope='rows' value='Percent' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:pes19_votechoice2019:nk]' value='-90' />
           </style-rule>
           <style-rule element='worksheet'>
             <format attr='display-field-labels' scope='cols' value='false' />
@@ -1673,6 +1697,11 @@
             <column caption='Cps19 Employment' datatype='string' name='[cps19_employment]' role='dimension' type='nominal' />
             <column caption='Cps19 Gender' datatype='string' name='[cps19_gender]' role='dimension' type='nominal' />
             <column caption='Cps19 Imm' datatype='string' name='[cps19_imm]' role='dimension' type='nominal' />
+            <column caption='Cps19 Province' datatype='string' name='[cps19_province]' role='dimension' semantic-role='[State].[Name]' type='nominal'>
+              <semantic-values semantic-role='[State].[Name]'>
+                <semantic-value key='&quot;Prince Edward&quot;' value='&quot;Prince Edward Island&quot;' />
+              </semantic-values>
+            </column>
             <column-instance column='[age]' derivation='None' name='[none:age:qk]' pivot='key' type='quantitative' />
             <column-instance column='[cps19_bornin_canada]' derivation='None' name='[none:cps19_bornin_canada:nk]' pivot='key' type='nominal' />
             <column-instance column='[cps19_employment]' derivation='None' name='[none:cps19_employment:nk]' pivot='key' type='nominal' />
@@ -1682,17 +1711,27 @@
               <table-calc ordering-type='Table' type='PctTotal' />
             </column-instance>
           </datasource-dependencies>
+          <filter class='categorical' column='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[Action (Cps19 Province)]'>
+            <groupfilter function='member' level='[cps19_province]' member='&quot;Saskatchewan&quot;' user:ui-action-filter='[Action3]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
           <slices>
             <column>[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:age:qk]</column>
             <column>[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_bornin_canada:nk]</column>
             <column>[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_employment:nk]</column>
             <column>[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_gender:nk]</column>
+            <column>[federated.1bi4ozq0cexghl14yriye0m1gbzi].[Action (Cps19 Province)]</column>
           </slices>
           <aggregation value='true' />
         </view>
         <style>
           <style-rule element='axis'>
             <format attr='title' class='0' field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[pcto:cnt:cps19_imm:qk:3]' scope='rows' value='Percent' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_imm:nk]' value='-90' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
           </style-rule>
         </style>
         <panes>
@@ -1746,7 +1785,7 @@
             </column-instance>
           </datasource-dependencies>
           <filter class='categorical' column='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[Action (Cps19 Province)]'>
-            <groupfilter function='level-members' level='[cps19_province]' user:ui-action-filter='[Action3]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+            <groupfilter function='member' level='[cps19_province]' member='&quot;Saskatchewan&quot;' user:ui-action-filter='[Action3]' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <manual-sort column='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_employment:nk]' direction='ASC'>
             <dictionary>
@@ -1780,6 +1819,15 @@
           </style-rule>
           <style-rule element='header'>
             <format attr='height-header' value='17' />
+            <format attr='wrap' data-class='subtotal' field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_employment:nk]' value='on' />
+            <format attr='text-orientation' data-class='subtotal' field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_employment:nk]' value='-90' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-orientation' field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_employment:nk]' value='-90' />
+            <format attr='wrap' field='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_employment:nk]' value='on' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
           </style-rule>
         </style>
         <panes>
@@ -1814,9 +1862,9 @@
       </datasource-dependencies>
       <zones>
         <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='100000' id='4' w='100000' x='0' y='0'>
-          <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='98186' id='7' param='horz' w='99064' x='468' y='907'>
-            <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='98186' id='5' w='77384' x='468' y='907'>
-              <zone h='49093' id='3' name='EDA:  Provinces ' w='38695' x='39157' y='907'>
+          <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='98142' id='7' param='horz' w='99034' x='483' y='929'>
+            <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='98142' id='5' w='77215' x='483' y='929'>
+              <zone h='49071' id='3' name='EDA:  Provinces ' w='38611' x='39087' y='929'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1824,7 +1872,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='19981' id='9' name='EDA: Voting' w='25275' x='468' y='33333'>
+              <zone h='19972' id='9' name='EDA: Voting' w='25219' x='483' y='33340'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1832,7 +1880,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='23109' id='10' name='EDA: Education' w='38689' x='468' y='53314'>
+              <zone h='23099' id='10' name='EDA: Education' w='38604' x='483' y='53312'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1840,7 +1888,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='49093' id='11' name='EDA:Employment' w='38695' x='39157' y='50000'>
+              <zone h='49071' id='11' name='EDA:Employment' w='38611' x='39087' y='50000'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1848,7 +1896,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='22670' id='12' name='EDA: Religion' w='38689' x='468' y='76423'>
+              <zone h='22660' id='12' name='EDA: Religion' w='38604' x='483' y='76411'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1856,7 +1904,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='52407' id='20' name='EDA:Attitude' w='13414' x='25743' y='907'>
+              <zone h='52383' id='20' name='EDA:Attitude' w='13385' x='25702' y='929'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1864,7 +1912,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone _.fcp.SetMembershipControl.false...type='text' _.fcp.SetMembershipControl.true...type-v2='text' forceUpdate='true' h='32426' id='21' w='25275' x='468' y='907'>
+              <zone _.fcp.SetMembershipControl.false...type='text' _.fcp.SetMembershipControl.true...type-v2='text' forceUpdate='true' h='32411' id='21' w='25219' x='483' y='929'>
                 <formatted-text>
                   <run bold='true' fontcolor='#1b1b1b' fontname='Benton Sans Book' fontsize='14'>Introduction</run>
                   <run>Æ&#10;</run>
@@ -1897,8 +1945,8 @@
                 </zone-style>
               </zone>
             </zone>
-            <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='98186' id='6' param='vert' w='21679' x='77852' y='907'>
-              <zone _.fcp.SetMembershipControl.false...type='color' _.fcp.SetMembershipControl.true...type-v2='color' h='7370' id='8' name='EDA:  Provinces ' pane-specification-id='0' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[cnt:cps19_province:qk]' w='21679' x='77852' y='907'>
+            <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='98142' id='6' param='vert' w='21819' x='77698' y='929'>
+              <zone _.fcp.SetMembershipControl.false...type='color' _.fcp.SetMembershipControl.true...type-v2='color' h='8478' id='8' name='EDA:  Provinces ' pane-specification-id='0' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[cnt:cps19_province:qk]' w='21819' x='77698' y='929'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1906,7 +1954,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='11111' id='13' name='EDA: Voting' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_bornin_canada:nk]' values='database' w='21679' x='77852' y='8277'>
+              <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='12195' id='13' name='EDA: Voting' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_bornin_canada:nk]' values='database' w='21819' x='77698' y='9407'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1914,7 +1962,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='13605' id='14' name='EDA: Voting' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_gender:nk]' values='database' w='21679' x='77852' y='19388'>
+              <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='14866' id='14' name='EDA: Voting' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_gender:nk]' values='database' w='21819' x='77698' y='21602'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1922,7 +1970,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='5782' id='15' name='EDA:  Provinces ' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:age:qk]' values='relevant' w='21679' x='77852' y='32993'>
+              <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='6388' id='15' name='EDA:  Provinces ' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:age:qk]' values='relevant' w='21819' x='77698' y='36468'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -1944,8 +1992,8 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='1750' minheight='1750' sizing-mode='vscroll' />
           <zones>
-            <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='100000' id='33' w='100000' x='0' y='0'>
-              <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='98186' id='32' param='vert' w='99064' x='468' y='907'>
+            <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='100000' id='37' w='100000' x='0' y='0'>
+              <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='98186' id='36' param='vert' w='99064' x='468' y='907'>
                 <zone _.fcp.SetMembershipControl.false...type='text' _.fcp.SetMembershipControl.true...type-v2='text' forceUpdate='true' h='32426' id='21' w='25275' x='468' y='907'>
                   <formatted-text>
                     <run bold='true' fontcolor='#1b1b1b' fontname='Benton Sans Book' fontsize='14'>Introduction</run>
@@ -2098,9 +2146,9 @@
       </datasource-dependencies>
       <zones>
         <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='100000' id='4' w='100000' x='0' y='0'>
-          <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='40950' id='7' param='horz' w='99064' x='468' y='907'>
-            <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='40950' id='5' w='89702' x='468' y='907'>
-              <zone h='40950' id='3' name='Attitude Vs Province (Average)' w='44851' x='45319' y='907'>
+          <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='40931' id='7' param='horz' w='99034' x='483' y='929'>
+            <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='40931' id='5' w='89378' x='483' y='929'>
+              <zone h='40931' id='3' name='Attitude Vs Province (Average)' w='44691' x='45170' y='929'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -2108,49 +2156,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='40950' id='34' name='Attitude Vs Religion' w='44851' x='468' y='907'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-            </zone>
-            <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' fixed-size='160' h='40950' id='6' is-fixed='true' param='vert' w='9362' x='90170' y='907'>
-              <zone _.fcp.SetMembershipControl.false...type='color' _.fcp.SetMembershipControl.true...type-v2='color' h='7370' id='8' name='Attitude Vs Province (Average)' pane-specification-id='5' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[avg:attitude:qk]' w='9362' x='90170' y='907'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-              <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='6463' id='9' mode='dropdown' name='Attitude Vs Province (Average)' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_gender:nk]' values='database' w='9362' x='90170' y='8277'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-              <zone _.fcp.SetMembershipControl.false...type='color' _.fcp.SetMembershipControl.true...type-v2='color' h='9751' id='13' name='Attitude Vs Province' pane-specification-id='0' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_imm:nk]' w='9362' x='90170' y='14740'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-              <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='6463' id='14' mode='dropdown' name='Attitude Vs Province' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_bornin_canada:nk]' values='database' w='9362' x='90170' y='24491'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-              <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='7823' id='35' name='Attitude Vs Province (Average)' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:age:qk]' values='database' w='9362' x='90170' y='30954'>
+              <zone h='40931' id='34' name='Attitude Vs Religion' w='44687' x='483' y='929'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -2159,8 +2165,50 @@
                 </zone-style>
               </zone>
             </zone>
+            <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' fixed-size='160' h='40931' id='6' is-fixed='true' param='vert' w='9656' x='89861' y='929'>
+              <zone _.fcp.SetMembershipControl.false...type='color' _.fcp.SetMembershipControl.true...type-v2='color' h='8478' id='8' name='Attitude Vs Province (Average)' pane-specification-id='5' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[avg:attitude:qk]' w='9656' x='89861' y='929'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='7085' id='9' mode='dropdown' name='Attitude Vs Province (Average)' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_gender:nk]' values='database' w='9656' x='89861' y='9407'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone _.fcp.SetMembershipControl.false...type='color' _.fcp.SetMembershipControl.true...type-v2='color' h='9805' id='13' name='Attitude Vs Province' pane-specification-id='0' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_imm:nk]' w='9656' x='89861' y='16492'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='7085' id='14' mode='dropdown' name='Attitude Vs Province' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_bornin_canada:nk]' values='database' w='9656' x='89861' y='26297'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone _.fcp.SetMembershipControl.false...type='filter' _.fcp.SetMembershipControl.true...type-v2='filter' h='8478' id='35' name='Attitude Vs Province (Average)' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:age:qk]' values='database' w='9656' x='89861' y='33382'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
           </zone>
-          <zone h='24798' id='12' name='Attitude Vs Province' w='49532' x='50000' y='41857'>
+          <zone h='24786' id='12' name='Attitude Vs Province' w='49517' x='50000' y='41860'>
             <zone-style>
               <format attr='border-color' value='#000000' />
               <format attr='border-style' value='none' />
@@ -2168,7 +2216,7 @@
               <format attr='margin' value='4' />
             </zone-style>
           </zone>
-          <zone h='32438' id='20' name='Attitude Vs Vote Choice' w='49532' x='50000' y='66655'>
+          <zone h='32425' id='20' name='Attitude Vs Vote Choice' w='49517' x='50000' y='66646'>
             <zone-style>
               <format attr='border-color' value='#000000' />
               <format attr='border-style' value='none' />
@@ -2176,7 +2224,7 @@
               <format attr='margin' value='4' />
             </zone-style>
           </zone>
-          <zone h='24798' id='32' name='Attitude Vs Employment' w='49532' x='468' y='41857'>
+          <zone h='24786' id='32' name='Attitude Vs Employment' w='49517' x='483' y='41860'>
             <zone-style>
               <format attr='border-color' value='#000000' />
               <format attr='border-style' value='none' />
@@ -2184,7 +2232,7 @@
               <format attr='margin' value='4' />
             </zone-style>
           </zone>
-          <zone h='32438' id='33' name='Attitude Vs Education' w='49532' x='468' y='66655'>
+          <zone h='32425' id='33' name='Attitude Vs Education' w='49517' x='483' y='66646'>
             <zone-style>
               <format attr='border-color' value='#000000' />
               <format attr='border-style' value='none' />
@@ -2204,8 +2252,8 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='1850' minheight='1850' sizing-mode='vscroll' />
           <zones>
-            <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='100000' id='51' w='100000' x='0' y='0'>
-              <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='98186' id='50' param='vert' w='99064' x='468' y='907'>
+            <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='100000' id='55' w='100000' x='0' y='0'>
+              <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='98186' id='54' param='vert' w='99064' x='468' y='907'>
                 <zone fixed-size='280' h='40950' id='34' is-fixed='true' name='Attitude Vs Religion' w='44851' x='468' y='907'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -2319,7 +2367,7 @@
       <simple-id uuid='{91601E89-A3DB-4C6D-940D-9BD9598CD793}' />
     </dashboard>
   </dashboards>
-  <windows saved-dpi-scale-factor='1.25' source-height='30'>
+  <windows source-height='37'>
     <window class='dashboard' name='EDA:Dashboard'>
       <viewpoints>
         <viewpoint name='EDA:  Provinces '>
@@ -2341,10 +2389,10 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='15' />
+      <active id='6' />
       <simple-id uuid='{AA600382-6CAE-4595-8A74-5652C06754C4}' />
     </window>
-    <window class='dashboard' maximized='true' name='Final dashboard'>
+    <window class='dashboard' name='Final dashboard'>
       <viewpoints>
         <viewpoint name='Attitude Vs Education' />
         <viewpoint name='Attitude Vs Employment' />
@@ -2357,13 +2405,13 @@
         <viewpoint name='Attitude Vs Religion' />
         <viewpoint name='Attitude Vs Vote Choice' />
       </viewpoints>
-      <active id='9' />
+      <active id='35' />
       <simple-id uuid='{61F598DB-EAD5-49E9-AEA4-0E1F567D972D}' />
     </window>
     <window class='worksheet' name='EDA:  Provinces '>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
@@ -2376,12 +2424,12 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='24'>
             <card type='title' />
           </strip>
         </edge>
         <edge name='right'>
-          <strip size='160'>
+          <strip size='128'>
             <card pane-specification-id='0' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[cnt:cps19_province:qk]' type='color' />
           </strip>
         </edge>
@@ -2391,7 +2439,7 @@
     <window class='worksheet' name='EDA: Voting'>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
@@ -2404,17 +2452,20 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='24'>
             <card type='title' />
           </strip>
         </edge>
       </cards>
+      <viewpoint>
+        <floating-toolbar-visibility value='1' />
+      </viewpoint>
       <simple-id uuid='{9BE889EB-B68F-4585-88B7-5F1837E48107}' />
     </window>
     <window class='worksheet' name='EDA:Attitude'>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
@@ -2427,7 +2478,7 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='24'>
             <card type='title' />
           </strip>
         </edge>
@@ -2437,7 +2488,7 @@
     <window class='worksheet' name='EDA: Born In Canada'>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
@@ -2450,7 +2501,7 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='24'>
             <card type='title' />
           </strip>
         </edge>
@@ -2460,7 +2511,7 @@
     <window class='worksheet' name='EDA: Education'>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
@@ -2473,17 +2524,17 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='24'>
             <card type='title' />
           </strip>
         </edge>
       </cards>
       <simple-id uuid='{B9B1BEC3-DAB6-43EB-B343-1180F60D649F}' />
     </window>
-    <window class='worksheet' name='EDA:Employment'>
+    <window class='worksheet' maximized='true' name='EDA:Employment'>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
@@ -2496,7 +2547,7 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='24'>
             <card type='title' />
           </strip>
         </edge>
@@ -2506,7 +2557,7 @@
     <window class='worksheet' name='EDA: Religion'>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
@@ -2519,7 +2570,7 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='24'>
             <card type='title' />
           </strip>
         </edge>
@@ -2529,7 +2580,7 @@
     <window class='worksheet' name='Attitude Vs Province'>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='marks' />
             <card type='pages' />
             <card type='filters' />
@@ -2547,12 +2598,12 @@
           </strip>
         </edge>
         <edge name='bottom'>
-          <strip size='141'>
+          <strip size='112'>
             <card type='caption' />
           </strip>
         </edge>
         <edge name='right'>
-          <strip size='160'>
+          <strip size='128'>
             <card pane-specification-id='0' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_imm:nk]' type='color' />
           </strip>
         </edge>
@@ -2562,7 +2613,7 @@
     <window class='worksheet' name='Attitude Vs Province (Average)'>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
@@ -2575,12 +2626,12 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='24'>
             <card type='title' />
           </strip>
         </edge>
         <edge name='right'>
-          <strip size='160'>
+          <strip size='128'>
             <card pane-specification-id='5' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[avg:attitude:qk]' type='color' />
           </strip>
         </edge>
@@ -2590,7 +2641,7 @@
     <window class='worksheet' name='Attitude Vs Vote Choice'>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
@@ -2603,12 +2654,12 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='24'>
             <card type='title' />
           </strip>
         </edge>
         <edge name='right'>
-          <strip size='160'>
+          <strip size='128'>
             <card pane-specification-id='0' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_imm:nk]' type='color' />
           </strip>
         </edge>
@@ -2618,7 +2669,7 @@
     <window class='worksheet' name='Attitude Vs Employment'>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
@@ -2631,12 +2682,12 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='24'>
             <card type='title' />
           </strip>
         </edge>
         <edge name='right'>
-          <strip size='160'>
+          <strip size='128'>
             <card pane-specification-id='0' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_imm:nk]' type='color' />
           </strip>
         </edge>
@@ -2646,7 +2697,7 @@
     <window class='worksheet' name='Attitude Vs Education'>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
@@ -2659,12 +2710,12 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='24'>
             <card type='title' />
           </strip>
         </edge>
         <edge name='right'>
-          <strip size='160'>
+          <strip size='128'>
             <card pane-specification-id='0' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_imm:nk]' type='color' />
           </strip>
         </edge>
@@ -2674,7 +2725,7 @@
     <window class='worksheet' name='Attitude Vs Religion'>
       <cards>
         <edge name='left'>
-          <strip size='160'>
+          <strip size='128'>
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
@@ -2687,12 +2738,12 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='24'>
             <card type='title' />
           </strip>
         </edge>
         <edge name='right'>
-          <strip size='160'>
+          <strip size='128'>
             <card pane-specification-id='0' param='[federated.1bi4ozq0cexghl14yriye0m1gbzi].[none:cps19_imm:nk]' type='color' />
           </strip>
         </edge>
