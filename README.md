@@ -16,6 +16,6 @@ the data that I am going to use is Canadian election Studies (CES). The CES is a
 
 
 ### Link to the Tableau  
-https://dub01.online.tableau.com/t/data301dashboards/views/AttitudetowardimmigraitioninCanada-data301course-project-solo_506/EDADashboard?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link
+https://tabsoft.co/3GZyewV
 ### Link to the presentation 
-https://youtu.be/Tu9M9oUAatc
+https://bit.ly/3u3JHb9
