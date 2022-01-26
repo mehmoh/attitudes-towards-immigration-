@@ -15,7 +15,7 @@ the data that I am going to use is Canadian election Studies (CES). The CES is a
 - Person 1: Mehdi Mohamadian, a master student in Global studies.
 
 
-## References
-
+### Link to the Tableau  
+https://dub01.online.tableau.com/t/data301dashboards/views/AttitudetowardimmigraitioninCanada-data301course-project-solo_506/EDADashboard?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link
 ### Link to the presentation 
 https://youtu.be/Tu9M9oUAatc
